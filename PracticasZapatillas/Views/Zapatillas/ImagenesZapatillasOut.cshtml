@@ -1,0 +1,38 @@
+﻿@model Imagen
+
+@{
+    Zapatilla zapatilla = ViewData["ZAPATILLASELECCIONADA"] as Zapatilla;
+}
+
+<h1>Imagenes Registro Zapatillas</h1>
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-danger">
+        Nombre: @zapatilla.Nombre
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Descripcion: @zapatilla.Descripcion
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Precio: @zapatilla.Precio
+    </li>
+</ul>
+
+<h2 style="color:blue">
+    Registro @ViewData["POSICION"] de @ViewData["REGISTROS"]
+</h2>
+
+<div id="contenidoImagenes" style="background-color: lightgreen"></div>
+
+@section Scripts {
+    <script>
+        function loadZapatillaPaginacion(posicion) {
+            $(function () {
+                $("#contenidoImagenes").load("/Zapatillas/ImagenesZapatillasOut?posicion="
+                    + posicion + "&idzapatilla=" + @zapatilla.IdProducto);
+            });
+        }
+
+        loadZapatillaPaginacion(1);
+    </script>
+}

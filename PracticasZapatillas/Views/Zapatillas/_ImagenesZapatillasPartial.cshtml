@@ -1,0 +1,43 @@
+﻿@model Imagen
+@{
+    Zapatilla zapatilla = ViewData["ZAPATILLA"] as Zapatilla;
+}
+
+@if ((int)@ViewData["ULTIMO"] != 0)
+{
+    <h3 class="mt-3">
+        Zapatilla @ViewData["POSICION"] de @ViewData["ULTIMO"]
+    </h3>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <button onclick="loadZapatillaPaginacion(1)" class="btn">
+                Primero
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button onclick="loadZapatillaPaginacion(@ViewData["ANTERIOR"])" class="btn">
+                Anterior
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button onclick="loadZapatillaPaginacion(@ViewData["SIGUIENTE"])" class="btn">
+                Siguiente
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button onclick="loadZapatillaPaginacion(@ViewData["ULTIMO"])" class="btn">
+                Último
+            </button>
+        </li>
+
+        @if (Model != null)
+        {
+            <li><img src="@Model.Foto" style="width:250px;height:250px" /></li>
+        }
+      
+    </ul>
+}
+else
+{
+    <h2>No hay zapatillas</h2>
+}
